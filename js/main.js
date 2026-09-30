@@ -58,8 +58,8 @@
   function goTo(target) {
     const el = target === '#top' ? 0 : $(target);
     if (el === null) return;
-    const off = -(hdr.offsetHeight - 1);
-    if (lenis) lenis.scrollTo(el, { offset: el === 0 ? 0 : off, duration: 1.4 });
+    const off = el === 0 ? 0 : -(parseFloat(getComputedStyle(el).scrollMarginTop) || hdr.offsetHeight + 20);
+    if (lenis) lenis.scrollTo(el, { duration: 1.4 }); // Lenis applies the section's scroll-margin-top itself
     else window.scrollTo({ top: el === 0 ? 0 : el.getBoundingClientRect().top + scrollY + off, behavior: reduce ? 'auto' : 'smooth' });
   }
   document.addEventListener('click', e => {
@@ -529,12 +529,20 @@
       gsap.fromTo($$('.mi', el), { yPercent: 115 }, { yPercent: 0, duration: 1.1, stagger: .07, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
     // soft fade-ups
-    const fades = '.sec .eyebrow,.sec .lead,.moods,.jawak-stage,.mood-rail,.pcard,.wli,.womens-stage,.dna-pick,.dna-read,.cmp-slots,.cmp-strip,.cmp-table,.sp,.tray,.set-hint,.loc,.machine,.pillars li,.quotes figure,.samples-copy .eyebrow,.samples-copy .lead,.samples-copy .hero-cta,.moment-copy > *:not(.moment-name),.ftr-grid > *';
+    const fades = '.sec .eyebrow,.sec .lead,.moods,.jawak-stage,.mood-rail,.wli,.womens-stage,.dna-pick,.dna-read,.cmp-slots,.cmp-strip,.cmp-table,.sp,.tray,.set-hint,.loc,.machine,.pillars li,.quotes figure,.samples-copy .eyebrow,.samples-copy .lead,.samples-copy .hero-cta,.moment-copy > *:not(.moment-name),.ftr-grid > *';
     ScrollTrigger.batch(fades, {
       start: 'top 90%', once: true,
       onEnter: els => gsap.fromTo(els, { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: .07, ease: 'power3.out', overwrite: true })
     });
     gsap.set(fades, { opacity: 0 });
+
+    // men's edit: faster, tighter entrances on mobile so the 2nd row never sits empty
+    const mob = matchMedia('(max-width: 780px)').matches;
+    gsap.set('.pcard', { opacity: 0 });
+    ScrollTrigger.batch('.pcard', {
+      start: mob ? 'top 102%' : 'top 90%', once: true, interval: mob ? .05 : .1, batchMax: mob ? 2 : 4,
+      onEnter: els => gsap.fromTo(els, { y: mob ? 16 : 34, opacity: 0 }, { y: 0, opacity: 1, duration: mob ? .6 : 1, stagger: mob ? .05 : .07, ease: 'power3.out', overwrite: true })
+    });
 
     // hero parallax on scroll + mouse
     gsap.to('#heroMedia', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
