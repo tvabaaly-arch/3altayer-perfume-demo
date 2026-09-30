@@ -7,7 +7,7 @@
 <meta name="description" content="عالطاير: عطور نيش أصلية، عينات قبل الزجاجة، وتجربة اكتشاف عطرك. نسخة عرض تجريبية.">
 <meta name="theme-color" content="#FBFBF9">
 <link rel="icon" href="assets/img/logo-blue.png" type="image/png">
-<link rel="preload" href="assets/fonts/readex-pro-arabic-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/tajawal-arabic-300-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/img/hero.webp" as="image">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -304,19 +304,20 @@
     <div class="set-pick">
       <p class="eyebrow" data-en="Discovery Sets">Discovery Sets</p>
       <h2 class="h2" data-split data-en="Build your set">ابنِ مجموعتك</h2>
-      <p class="lead" data-en="Choose 3 scents you want to try and we’ll arrange them in one box.">اختر ٣ عطور تبي تجرّبها، ونرتّبها لك في صندوق واحد.</p>
+      <p class="lead" data-en="We’ve started you with three curated scents. Swap any of them with a tap — we’ll arrange them in one discovery tray.">اخترنا لك ثلاثة عطور لتبدأ. بدّل أي عطر بلمسة، ونرتّبها لك في صندوق اكتشاف واحد.</p>
       <div class="set-grid-pick" id="setPick"></div>
     </div>
     <div class="set-box-wrap">
-      <div class="box" id="box">
-        <div class="box-lid"><span data-en="MY SET">مجموعتي</span></div>
-        <div class="box-tray">
-          <div class="bslot" data-i="0"><em>١</em></div>
-          <div class="bslot" data-i="1"><em>٢</em></div>
-          <div class="bslot" data-i="2"><em>٣</em></div>
+      <div class="tray" id="box">
+        <div class="tray-head"><span class="tray-t">3ALTAYER · Discovery Set</span><span class="tray-n" id="setCount">٣ / ٣</span></div>
+        <div class="tray-slots">
+          <button class="bslot" data-i="0" aria-label="Slot 1"><span class="bs-img"></span><span class="bs-cap"><em>01</em><b>—</b><small></small></span></button>
+          <button class="bslot" data-i="1" aria-label="Slot 2"><span class="bs-img"></span><span class="bs-cap"><em>02</em><b>—</b><small></small></span></button>
+          <button class="bslot" data-i="2" aria-label="Slot 3"><span class="bs-img"></span><span class="bs-cap"><em>03</em><b>—</b><small></small></span></button>
         </div>
+        <div class="tray-base"><i></i></div>
       </div>
-      <div class="set-status"><b id="setCount">٠ / ٣</b><span id="setMsg" data-en="Pick your first scent">اختر أول عطر</span></div>
+      <p class="set-hint" id="setMsg"></p>
       <div class="stage-act">
         <button class="btn btn-primary btn-sm magnetic" id="setGo" disabled><span data-en="Create my set">أنشئ مجموعتي</span></button>
         <button class="btn btn-ghost btn-sm" id="setReset"><span data-en="Start over">ابدأ من جديد</span></button>
@@ -337,10 +338,13 @@
     </div>
     <div class="machine-wrap">
       <div class="machine" id="machine">
-        <div class="m-screen"><span class="dot"></span><b id="mLoc">—</b><small id="mState"></small></div>
+        <div class="m-crown"><span class="m-brand">3ALTAYER&nbsp;STATION</span><span class="m-stat"><i class="dot"></i><small id="mState"></small></span></div>
+        <div class="m-screen"><b id="mLoc">—</b></div>
         <div class="m-glass" id="mGlass"></div>
         <div class="m-tray"><span id="mTicket" class="ticket"></span></div>
+        <div class="m-plinth"></div>
       </div>
+      <span class="m-floor" aria-hidden="true"></span>
       <button class="btn btn-primary btn-sm magnetic m-go" id="mGo"><span data-en="Try now (demo)">جرّب الآن (تجريبي)</span></button>
     </div>
   </div>

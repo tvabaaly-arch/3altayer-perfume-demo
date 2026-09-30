@@ -133,7 +133,7 @@
     let w, h, dpr, mx = .3, my = .5, tmx = .3, tmy = .5, visible = true, raf;
     const lines = Array.from({ length: opts.count || 5 }, (_, i) => ({
       amp: 26 + i * 9, freq: .0022 + i * .00045, speed: .00016 + i * .00005, off: i * 1.7,
-      y: (opts.y || .56) + (i - 2) * .035, col: i === 2 ? 'orange' : 'blue', a: i === 2 ? .5 : .22 + i * .05
+      y: (opts.y || .56) + (i - 2) * .035, col: i === 2 ? 'orange' : 'blue', a: i === 2 ? .32 : .12 + i * .035
     }));
     function size() { dpr = Math.min(devicePixelRatio || 1, 2); w = canvas.clientWidth; h = canvas.clientHeight; canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
     size(); addEventListener('resize', size);
@@ -266,7 +266,7 @@
   }
   function bindCardActs(root) {
     $$('[data-cmp]', root).forEach(b => b.addEventListener('click', () => { assignCompare(b.dataset.cmp); goTo('#compare'); }));
-    $$('[data-set]', root).forEach(b => b.addEventListener('click', () => { if (!setSel.includes(b.dataset.set)) togglePick(b.dataset.set, null); goTo('#set'); }));
+    $$('[data-set]', root).forEach(b => b.addEventListener('click', () => { if (!setSel.includes(b.dataset.set)) pickForSet(b.dataset.set, null, true); goTo('#set'); }));
   }
 
   /* ---- 8. Women's ---- */
@@ -382,46 +382,73 @@
   }
 
   /* ---- 12. Discovery set ---- */
-  let setSel = [];
+  const CURATED = ['althair', 'devotion', 'verano'];
+  let setSel = [...CURATED], setFocus = 0;
+  const firstEmpty = () => setSel.indexOf(null);
+  const slotEl = i => $(`.bslot[data-i="${i}"]`);
   function renderSet() {
-    $('#setPick').innerHTML = P.map(p => `<button class="sp" data-id="${p.id}" aria-pressed="${setSel.includes(p.id)}" title="${p.house} ${p.name}" aria-label="${p.name}"><img src="${p.img}" alt="" loading="lazy"></button>`).join('');
-    $$('.sp').forEach(b => b.addEventListener('click', () => togglePick(b.dataset.id, b)));
+    $('#setPick').innerHTML = P.map(p => `<button class="sp" data-id="${p.id}" aria-pressed="false" title="${p.house} ${p.name}" aria-label="${p.name}"><img src="${p.img}" alt="" loading="lazy"><em aria-hidden="true"></em></button>`).join('');
+    $$('.sp').forEach(b => b.addEventListener('click', () => pickForSet(b.dataset.id, b)));
+    $$('.bslot').forEach(s => { s.onclick = () => { if (setSel.filter(Boolean).length === 3) { setFocus = +s.dataset.i; syncSet(); } }; });
+    setSel.forEach((id, i) => fillSlot(i, id));
     syncSet();
   }
-  function syncSet() {
-    const n = setSel.length;
-    $('#setCount').textContent = `${num(n)} / ${num(3)}`;
-    $('#setMsg').textContent = n === 0 ? L('اختر أول عطر', 'Pick your first scent') : n < 3 ? L(`باقي ${num(3 - n)}`, `${3 - n} to go`) : L('مجموعتك جاهزة', 'Your set is ready');
-    $('#setGo').disabled = n < 3;
-    $$('.sp').forEach(b => { const on = setSel.includes(b.dataset.id); b.setAttribute('aria-pressed', on); b.classList.toggle('dim', n >= 3 && !on); });
-    $('#box').classList.toggle('closed', n === 3);
+  function fillSlot(i, id) {
+    const s = slotEl(i), p = id && byId(id);
+    $('.bs-img', s).innerHTML = p ? `<img src="${p.img}" alt="${p.house} ${p.name}">` : `<span class="bs-empty">${L('اختر عطراً', 'Choose a scent')}</span>`;
+    $('.bs-cap b', s).textContent = p ? p.name : '—';
+    $('.bs-cap small', s).textContent = p ? p.house : '';
+    s.classList.toggle('empty', !p);
   }
-  function togglePick(id, srcBtn) {
-    const i = setSel.indexOf(id);
-    if (i > -1) {
-      setSel.splice(i, 1);
-      $$('.bslot').forEach(s => { const im = $('img', s); if (im) im.remove(); });
-      setSel.forEach((pid, k) => { const s = $(`.bslot[data-i="${k}"]`); s.insertAdjacentHTML('beforeend', `<img src="${byId(pid).img}" alt="${byId(pid).name}">`); });
+  function syncSet() {
+    const n = setSel.filter(Boolean).length, left = 3 - n;
+    $('#setCount').textContent = `${num(n)} / ${num(3)}`;
+    $('#setMsg').textContent = n === 3
+      ? L('مجموعتك جاهزة. اختر أي عطر لاستبدال الخانة المحددة.', 'Your set is ready. Pick any scent to replace the highlighted slot.')
+      : L(`اختر ${left === 1 ? 'عطراً واحداً' : left === 2 ? 'عطرين' : 'ثلاثة عطور'} لإكمال المجموعة`, `Choose ${left} more to complete your set`);
+    $('#setGo').disabled = n < 3;
+    $('#box').classList.toggle('ready', n === 3);
+    $$('.sp').forEach(b => { const k = setSel.indexOf(b.dataset.id); b.setAttribute('aria-pressed', k > -1); $('em', b).textContent = k > -1 ? num(k + 1) : ''; });
+    const target = n === 3 ? setFocus : firstEmpty();
+    $$('.bslot').forEach(s => s.classList.toggle('focus', +s.dataset.i === target));
+  }
+  function animOut(i, cb) {
+    const img = $('.bs-img img', slotEl(i));
+    if (!img || !hasGsap || reduce) return cb();
+    gsap.to(img, { y: 18, opacity: 0, duration: .32, ease: 'power2.in', onComplete: cb });
+  }
+  function flyInto(i, id, srcBtn, instant) {
+    const p = byId(id), target = $('.bs-img', slotEl(i));
+    const src = srcBtn ? $('img', srcBtn) : null;
+    const done = () => {
+      fillSlot(i, id);
+      if (hasGsap && !reduce) gsap.fromTo($('.bs-img img', slotEl(i)), { y: -8, opacity: .5 }, { y: 0, opacity: 1, duration: .6, ease: 'power3.out' });
+    };
+    if (instant || !src || !hasGsap || reduce) return done();
+    const a = src.getBoundingClientRect(), b = target.getBoundingClientRect();
+    const fly = document.createElement('img'); fly.src = p.img; fly.className = 'fly'; fly.alt = '';
+    Object.assign(fly.style, { left: a.left + 'px', top: a.top + 'px', width: a.width + 'px', height: a.height + 'px', objectFit: 'contain' });
+    document.body.appendChild(fly);
+    const s = Math.min(b.width / a.width, b.height / a.height);
+    gsap.to(fly, { x: (b.left + b.width / 2) - (a.left + a.width / 2), y: (b.top + b.height / 2) - (a.top + a.height / 2), scale: s, duration: .85, ease: 'power3.inOut', onComplete: () => { fly.remove(); done(); } });
+    gsap.fromTo(fly, { rotate: 0 }, { rotate: 6, yoyo: true, repeat: 1, duration: .42, ease: 'sine.inOut' });
+  }
+  function pickForSet(id, srcBtn, instant) {
+    const k = setSel.indexOf(id);
+    if (k > -1) { // tapping a chosen scent removes it
+      setSel[k] = null;
+      animOut(k, () => fillSlot(k, null));
       return syncSet();
     }
-    if (setSel.length >= 3) return;
-    setSel.push(id);
-    const slot = $(`.bslot[data-i="${setSel.length - 1}"]`), p = byId(id);
-    const place = () => slot.insertAdjacentHTML('beforeend', `<img src="${p.img}" alt="${p.name}">`);
-    const src = srcBtn ? $('img', srcBtn) : $(`.sp[data-id="${id}"] img`);
-    if (hasGsap && !reduce && src && src.getBoundingClientRect().width) {
-      const a = src.getBoundingClientRect(), b = slot.getBoundingClientRect();
-      const fly = document.createElement('img'); fly.src = p.img; fly.className = 'fly';
-      Object.assign(fly.style, { left: a.left + 'px', top: a.top + 'px', width: a.width + 'px', height: a.height + 'px', objectFit: 'contain' });
-      document.body.appendChild(fly);
-      const tw = b.width * .8, th = b.height * .84;
-      gsap.to(fly, { x: b.left + b.width * .1 - a.left + (tw - a.width) / 2, y: b.top + b.height * .08 - a.top + (th - a.height) / 2, scale: Math.min(tw / a.width, th / a.height), duration: .9, ease: 'power3.inOut',
-        onComplete: () => { fly.remove(); place(); gsap.fromTo($('img', slot), { scale: 1.08 }, { scale: 1, duration: .5, ease: 'back.out(2)' }); syncSet(); } });
-      gsap.to(fly, { rotate: 8, yoyo: true, repeat: 1, duration: .45, ease: 'sine.inOut' });
-      $$('.sp').forEach(b2 => b2.setAttribute('aria-pressed', setSel.includes(b2.dataset.id)));
-    } else { place(); syncSet(); }
+    let slot = firstEmpty();
+    const replacing = slot < 0;
+    if (replacing) slot = setFocus;
+    setSel[slot] = id;
+    if (replacing) setFocus = (slot + 1) % 3;
+    syncSet();
+    replacing ? animOut(slot, () => flyInto(slot, id, srcBtn, instant)) : flyInto(slot, id, srcBtn, instant);
   }
-  $('#setReset').addEventListener('click', () => { setSel = []; $$('.bslot img').forEach(i => i.remove()); syncSet(); });
+  $('#setReset').addEventListener('click', () => { setSel = [null, null, null]; setFocus = 0; setSel.forEach((_, i) => fillSlot(i, null)); syncSet(); });
   $('#setGo').addEventListener('click', () => toast(L('تم تجهيز مجموعتك — عرض تجريبي بدون طلب فعلي', 'Your set is ready — demo only, no real order')));
 
   /* ---- 13. Stations ---- */
@@ -474,9 +501,6 @@
     renderFinder(); renderMoods(); renderMoment(); renderMens(); renderWomens();
     if ($('#radar').childElementCount) renderDnaPick(); else { buildRadar(); renderDnaPick(); }
     renderCompare(false); renderSet(); renderLocs(); renderBrands(); bindMagnetic();
-    // restore set slots
-    $$('.bslot img').forEach(i => i.remove());
-    setSel.forEach((pid, k) => $(`.bslot[data-i="${k}"]`).insertAdjacentHTML('beforeend', `<img src="${byId(pid).img}" alt="${byId(pid).name}">`));
   }
   renderAll();
 
@@ -505,7 +529,7 @@
       gsap.fromTo($$('.mi', el), { yPercent: 115 }, { yPercent: 0, duration: 1.1, stagger: .07, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
     });
     // soft fade-ups
-    const fades = '.sec .eyebrow,.sec .lead,.moods,.jawak-stage,.mood-rail,.pcard,.wli,.womens-stage,.dna-pick,.dna-read,.cmp-slots,.cmp-strip,.cmp-table,.sp,.box,.set-status,.loc,.machine,.pillars li,.quotes figure,.samples-copy .eyebrow,.samples-copy .lead,.samples-copy .hero-cta,.moment-copy > *:not(.moment-name),.ftr-grid > *';
+    const fades = '.sec .eyebrow,.sec .lead,.moods,.jawak-stage,.mood-rail,.pcard,.wli,.womens-stage,.dna-pick,.dna-read,.cmp-slots,.cmp-strip,.cmp-table,.sp,.tray,.set-hint,.loc,.machine,.pillars li,.quotes figure,.samples-copy .eyebrow,.samples-copy .lead,.samples-copy .hero-cta,.moment-copy > *:not(.moment-name),.ftr-grid > *';
     ScrollTrigger.batch(fades, {
       start: 'top 90%', once: true,
       onEnter: els => gsap.fromTo(els, { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: .07, ease: 'power3.out', overwrite: true })
@@ -549,9 +573,6 @@
     ctl.fromTo('.cl-line > span', { yPercent: 110, opacity: 0 }, { yPercent: 0, opacity: 1, stagger: .12, ease: 'power2.out' })
       .fromTo(['.cl-ar', '.closing-copy .btn'], { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: .1 }, '-=.2');
     gsap.fromTo('#closingMedia', { scale: 1.15, yPercent: -4 }, { scale: 1, yPercent: 4, ease: 'none', scrollTrigger: { trigger: '.closing', start: 'top bottom', end: 'bottom top', scrub: true } });
-
-    // section color breath between sections
-    gsap.fromTo('.stations .machine', { rotate: -2 }, { rotate: 1.5, ease: 'none', scrollTrigger: { trigger: '.stations', start: 'top bottom', end: 'bottom top', scrub: 1 } });
   }
 
   /* ---------- 1. Opening ---------- */

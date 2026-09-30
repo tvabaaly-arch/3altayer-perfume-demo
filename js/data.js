@@ -68,10 +68,10 @@ window.FINDER = [
 ];
 
 window.MOODS = [
-  { ar:'الجمعة',  en:'Friday',    sub:{ar:'صلاة وغداء وعائلة',en:'Prayer, lunch & family'}, tint:'#E9F1FA', picks:['isfarkand','lancome'] },
-  { ar:'الدوام',  en:'Workday',   sub:{ar:'حضور نظيف ومرتّب',en:'Clean, composed presence'}, tint:'#EEF4F8', picks:['verano','burberry'] },
-  { ar:'النادي',  en:'Club',      sub:{ar:'طاقة وحركة',en:'Energy in motion'}, tint:'#FDF0E6', picks:['diesel','devotion'] },
-  { ar:'المناسبات',en:'Occasions',sub:{ar:'أناقة تلفت النظر',en:'Elegance that turns heads'}, tint:'#ECEEF9', picks:['althair','alexandre'] },
+  { ar:'الجمعة',  en:'Friday',    sub:{ar:'صلاة وغداء وعائلة',en:'Prayer, lunch & family'}, tint:'#F7F8FA', picks:['isfarkand','lancome'] },
+  { ar:'الدوام',  en:'Workday',   sub:{ar:'حضور نظيف ومرتّب',en:'Clean, composed presence'}, tint:'#F6F7F5', picks:['verano','burberry'] },
+  { ar:'النادي',  en:'Club',      sub:{ar:'طاقة وحركة',en:'Energy in motion'}, tint:'#F8F5F1', picks:['diesel','devotion'] },
+  { ar:'المناسبات',en:'Occasions',sub:{ar:'أناقة تلفت النظر',en:'Elegance that turns heads'}, tint:'#F2F4F8', picks:['althair','alexandre'] },
   { ar:'الهدوء',  en:'Calm',      sub:{ar:'وقت لنفسك',en:'Time for yourself'}, tint:'#F3F6FA', picks:['lancome','verano'] }
 ];
 
