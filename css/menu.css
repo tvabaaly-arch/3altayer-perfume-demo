@@ -34,6 +34,7 @@
 
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;overflow-anchor:none;scroll-padding-top:calc(var(--bar-h) + 30px)}
+:root{color-scheme:light}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{display:block;max-width:100%}
 button{font:inherit;color:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
@@ -74,7 +75,7 @@ h1,h2,h3{text-wrap:balance}
 @keyframes unroll{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(-40px 0 0 0)}}
 
 /* ===== Sticky bar ===== */
-.bar{position:sticky;top:0;z-index:20;background:var(--paper);border-block:1.5px solid var(--ink)}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-block:1.5px solid var(--ink)}
 .bar .band{height:10px;background-size:40px 10px;border-top:1px solid var(--ink)}
 .bar-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:6px;padding-inline:8px 6px;height:var(--bar-h)}
 .tabs{flex:1;display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain;mask-image:linear-gradient(to left,#000 88%,transparent)}
