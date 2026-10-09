@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>المنيو — على ذوقك</title>
+<meta name="description" content="المنيو: المشروبات الساخنة، القهوة، المشروبات الباردة، الحلويات، والمخبوزات والمالح.">
+<meta name="theme-color" content="#FAE7CE">
+<link rel="preload" href="assets/fonts/reem-kufi-arabic-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/menu.css">
+</head>
+<body>
+<a class="skip" href="#menu">تخطَّ إلى المنيو</a>
+
+<header class="hero" id="top">
+  <div class="band band--top" aria-hidden="true"></div>
+  <div class="hero-in">
+    <div class="hero-copy">
+      <img class="logo" id="logo" src="menu/img/logo.png" alt="الشعار" hidden>
+      <h1 class="hero-title">على ذوقك</h1>
+      <p class="hero-sub">شاي، قهوة، مشروبات باردة، حلا ومخبوزات</p>
+    </div>
+    <div class="hero-stage" aria-hidden="true">
+      <div class="rug"></div>
+      <img class="h-pic h-pic--a" src="menu/img/hot-07.webp" alt="" width="128" height="137" fetchpriority="high">
+      <img class="h-pic h-pic--b" src="menu/img/cof-02.webp" alt="" width="174" height="288" fetchpriority="high">
+      <img class="h-pic h-pic--c" src="menu/img/hot-14.webp" alt="" width="208" height="237" fetchpriority="high">
+      <img class="h-pic h-pic--d" src="menu/img/des-09.webp" alt="" width="148" height="155" fetchpriority="high">
+    </div>
+  </div>
+</header>
+
+<nav class="bar" id="bar" aria-label="أقسام المنيو">
+  <div class="bar-in">
+    <div class="tabs" id="tabs"></div>
+    <button class="search-toggle" id="searchToggle" type="button" aria-expanded="false" aria-controls="searchBox" aria-label="بحث">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+    </button>
+  </div>
+  <div class="search" id="searchBox" hidden>
+    <label class="sr" for="q">ابحث في المنيو</label>
+    <input id="q" name="q" type="search" placeholder="ابحث باسم المنتج… لاتيه، خلية، كرك" autocomplete="off" enterkeyhint="search" spellcheck="false">
+    <button class="search-close" id="searchClose" type="button">إغلاق</button>
+  </div>
+  <div class="band band--bar" aria-hidden="true"></div>
+</nav>
+
+<main id="menu" tabindex="-1">
+  <p class="results" id="results" role="status" aria-live="polite"></p>
+  <div id="sections"></div>
+</main>
+
+<footer class="branches" id="branches">
+  <div class="band" aria-hidden="true"></div>
+  <div class="branches-in">
+    <h2 class="branches-title">فروعنا في خدمتكم</h2>
+    <ul class="branch-list" id="branchList"></ul>
+  </div>
+</footer>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheetTitle">
+  <div class="sheet-card">
+    <button class="sheet-close" id="sheetClose" type="button" aria-label="إغلاق التفاصيل">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+    <div class="sheet-grab" aria-hidden="true"></div>
+    <div class="sheet-body" id="sheetBody"></div>
+  </div>
+</dialog>
+
+<script src="js/menu-data.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>
