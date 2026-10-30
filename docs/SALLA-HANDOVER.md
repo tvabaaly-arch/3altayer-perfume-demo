@@ -47,6 +47,15 @@ data can replace the demo data without rewriting the views.
 
 ## Design system
 
-Tokens live in `css/tokens.css` (colours, type, radius, shadows, spacing). Fonts: DIN Next LT
-Arabic is used when installed on the device (it is commercial and is not bundled); Tajawal is the
-bundled fallback. English uses Cormorant Garamond (display) and Manrope (UI).
+Tokens live in `css/tokens.css`: warm ivory/beige surfaces, deep-brown primary, bronze for
+interactive states, champagne micro-accents. Fonts: Tajawal (Arabic), Cormorant Garamond
+(English headings), Manrope (English UI/body) — all bundled.
+
+## Imagery
+
+- Product photos marked `studio: true` (cream backdrop, 4:5) fill their frame; transparent
+  cut-outs (Isfarkand, Verano, Althair) sit on a matching cream tile.
+- The niche banner image was cropped to remove text that was baked into the source image; all
+  banner text is HTML. That source also shows Diesel Fuel for Life as a round glass bottle, which
+  does not match the real product — replace before production.
+- The Alexandre.J studio shot shows a scrambled ribbon inscription — replace before production.

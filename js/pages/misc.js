@@ -28,7 +28,7 @@
   function brands({ app }) {
     app.innerHTML = `<div class="wrap plp"><nav class="crumbs" aria-label="${t('breadcrumb')}"><a href="#/">${t('home')}</a>${I('chev')}<span aria-current="page">${t('brands')}</span></nav>
       <header class="plp-head"><h1 class="display-sm">${t('brands')}</h1><p class="lead">${t('brandsText')}</p></header>
-      <ul class="brand-grid">${C.brands.map(b => `<li><a class="brand-card" href="#/c/all?brand=${b.slug}" data-rv><span class="brand-img"><img src="${C.byId(b.cover).images[0].src}" alt="" loading="lazy"></span><b>${esc(b.name)}</b><small>${t('results', { n: b.count })}</small></a></li>`).join('')}</ul></div>`;
+      <ul class="brand-grid">${C.brands.map(b => `<li><a class="brand-card" href="#/c/all?brand=${b.slug}" data-rv><span class="brand-img"><img src="${C.byId(b.cover).images[0].src}" ${C.byId(b.cover).images[0].studio ? 'data-studio' : ''} alt="" loading="lazy"></span><b>${esc(b.name)}</b><small>${t('results', { n: b.count })}</small></a></li>`).join('')}</ul></div>`;
     return { title: t('brands') };
   }
 
@@ -40,7 +40,7 @@
       <section class="disc-sec" id="jawak" aria-labelledby="dj-h"><div class="wrap jw-grid"><div class="jw-head"><p class="eyebrow">${t('jawakEyebrow')}</p><h2 class="h2" id="dj-h">${t('jawakTitle')}</h2><p class="lead">${t('jawakText')}</p></div><div class="jw" id="discJawak" data-sel="calm"></div></div></section>
       <section class="disc-sec alt" id="dna" aria-labelledby="dd-h"><div class="wrap dna-grid">
         <div><p class="eyebrow">${t('dna')}</p><h2 class="h2" id="dd-h">${t('dnaSub')}</h2><p class="lead">${t('dnaPick')}</p>
-          <div class="dna-pick" role="radiogroup" aria-label="${t('dnaPick')}">${C.products.map(p => `<button role="radio" class="dna-opt" data-id="${p.id}" aria-checked="${p.id === dnaId}" title="${esc(p.brand + ' ' + tx(p.name))}"><img src="${p.images[0].src}" alt="${esc(tx(p.name))}" loading="lazy"></button>`).join('')}</div>
+          <div class="dna-pick" role="radiogroup" aria-label="${t('dnaPick')}">${C.products.map(p => `<button role="radio" class="dna-opt" data-id="${p.id}" aria-checked="${p.id === dnaId}" title="${esc(p.brand + ' ' + tx(p.name))}"><img src="${p.images[0].src}" ${p.images[0].studio ? 'data-studio' : ''} alt="${esc(tx(p.name))}" loading="lazy"></button>`).join('')}</div>
           <div id="dnaRead"></div></div>
         <div class="dna-chart" id="dnaChart"></div></div></section>
       <section class="disc-sec" id="set" aria-labelledby="ds-h"><div class="wrap"><div class="center-head"><p class="eyebrow">${t('set')}</p><h2 class="h2" id="ds-h">${t('setTitle')}</h2><p class="lead">${t('setText')}</p></div><div id="discSet"></div></div></section>

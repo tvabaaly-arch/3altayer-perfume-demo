@@ -37,7 +37,7 @@
           ${C.finder.map(f => `<button class="jw-mood" role="radio" aria-checked="${f.k === sel}" data-k="${f.k}"><b>${TA.i18n.lang === 'ar' ? f.ar : f.en}</b>${TA.i18n.lang === 'ar' ? `<small>${f.en}</small>` : ''}</button>`).join('')}
         </div>
         <div class="jw-result" aria-live="polite">${p ? `
-          <a class="jw-img" href="${p.url}"><img src="${p.images[0].src}" alt="${esc(p.images[0].alt)}"></a>
+          <a class="jw-img" href="${p.url}"><img src="${p.images[0].src}" ${p.images[0].studio ? 'data-studio' : ''} alt="${esc(p.images[0].alt)}"></a>
           <div class="jw-info">
             <p class="eyebrow">${esc(t('because', { m: TA.i18n.lang === 'ar' ? m.ar : m.en.toLowerCase() }))}</p>
             <p class="jw-brand">${esc(p.brand)}</p>
@@ -73,11 +73,11 @@
     const draw = () => {
       const n = filled(), target = n === 3 ? focus : slots.indexOf(null), total = slots.filter(Boolean).reduce((s, id) => s + C.byId(id).sample.price, 0);
       el.innerHTML = `<div class="ds">
-        <div class="ds-pick">${C.products.map(p => { const k = slots.indexOf(p.id); return `<button class="ds-opt" data-id="${p.id}" aria-pressed="${k > -1}" title="${esc(p.brand + ' ' + tx(p.name))}"><img src="${p.images[0].src}" alt="${esc(tx(p.name))}" loading="lazy">${k > -1 ? `<em>${k + 1}</em>` : ''}</button>`; }).join('')}</div>
+        <div class="ds-pick">${C.products.map(p => { const k = slots.indexOf(p.id); return `<button class="ds-opt" data-id="${p.id}" aria-pressed="${k > -1}" title="${esc(p.brand + ' ' + tx(p.name))}"><img src="${p.images[0].src}" ${p.images[0].studio ? 'data-studio' : ''} alt="${esc(tx(p.name))}" loading="lazy">${k > -1 ? `<em>${k + 1}</em>` : ''}</button>`; }).join('')}</div>
         <div class="ds-tray${n === 3 ? ' ready' : ''}">
           <div class="ds-head"><span>3ALTAYER · Discovery Set</span><span>${n} / 3</span></div>
           <div class="ds-slots">${slots.map((id, i) => { const p = id && C.byId(id); return `<button class="ds-slot${i === target ? ' focus' : ''}" data-i="${i}" aria-label="${i + 1}">
-            <span class="ds-img">${p ? `<img src="${p.images[0].src}" alt="${esc(tx(p.name))}">` : `<span class="ds-empty">${t('chooseScent')}</span>`}</span>
+            <span class="ds-img">${p ? `<img src="${p.images[0].src}" ${p.images[0].studio ? 'data-studio' : ''} alt="${esc(tx(p.name))}">` : `<span class="ds-empty">${t('chooseScent')}</span>`}</span>
             <span class="ds-cap"><em>0${i + 1}</em><b>${p ? esc(tx(p.name)) : '—'}</b><small>${p ? esc(p.brand) : ''}</small></span></button>`; }).join('')}</div>
           <div class="ds-base"><i></i></div>
         </div>
@@ -111,7 +111,7 @@
         <div class="st-machine${l.ok ? '' : ' off'}">
           <div class="st-crown"><span>3ALTAYER STATION</span><i></i></div>
           <p class="st-screen">${esc(tx(l))}</p>
-          <div class="st-glass">${l.slots.map(id => `<span><img src="${C.byId(id).images[0].src}" alt="" loading="lazy"></span>`).join('')}</div>
+          <div class="st-glass">${l.slots.map(id => `<span><img src="${C.byId(id).images[0].src}" ${C.byId(id).images[0].studio ? 'data-studio' : ''} alt="" loading="lazy"></span>`).join('')}</div>
           <p class="st-tray" aria-live="polite"></p>
           <div class="st-plinth"></div>
         </div>

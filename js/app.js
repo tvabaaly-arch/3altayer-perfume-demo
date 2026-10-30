@@ -47,7 +47,7 @@
         if (!target) return;
         const b = target.getBoundingClientRect();
         gsap.to(logo, { x: `+=${b.left + b.width / 2 - (a.left + a.width / 2)}`, y: `+=${b.top + b.height / 2 - (a.top + a.height / 2)}`, scale: b.width / a.width, duration: .55, ease: 'expo.inOut' });
-        gsap.to(el, { backgroundColor: 'rgba(255,255,255,0)', duration: .5 });
+        gsap.to(el, { backgroundColor: 'rgba(250,246,239,0)', duration: .5 });
       }, 1.05)
       .to({}, { duration: .58 });
     el.addEventListener('click', finish, { once: true });

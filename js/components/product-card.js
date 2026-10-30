@@ -13,7 +13,7 @@
     const tag = p.niche ? t('niche') : '';
     return `<article class="pc" data-id="${p.id}">
       <a class="pc-media" href="${p.url}" aria-label="${esc(p.brand + ' ' + tx(p.name))}">
-        <img src="${p.images[0].src}" alt="${esc(p.images[0].alt)}" ${eager ? '' : 'loading="lazy"'} decoding="async" width="400" height="500">
+        <img src="${p.images[0].src}" ${p.images[0].studio ? 'data-studio' : ''} alt="${esc(p.images[0].alt)}" ${eager ? '' : 'loading="lazy"'} decoding="async" width="400" height="500">
         ${tag ? `<span class="pc-tag">${tag}</span>` : ''}
       </a>
       <button class="pc-wish${wished ? ' on' : ''}" data-action="wish" data-id="${p.id}" aria-pressed="${wished}" aria-label="${esc(t(wished ? 'wishRemove' : 'wishAdd'))}">${TA.icon('heart')}</button>
@@ -47,7 +47,7 @@
 
   /* compact horizontal card (search results, jawak result, cart suggestions) */
   const mini = p => `<a class="pmini" href="${p.url}">
-      <span class="pmini-img"><img src="${p.images[0].src}" alt="" loading="lazy"></span>
+      <span class="pmini-img"><img src="${p.images[0].src}" ${p.images[0].studio ? 'data-studio' : ''} alt="" loading="lazy"></span>
       <span class="pmini-txt"><small>${esc(p.brand)}</small><b>${esc(tx(p.name))}</b><em>${price(p.bottle.price)}</em></span>
     </a>`;
 

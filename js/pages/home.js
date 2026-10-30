@@ -13,23 +13,23 @@
     const m = C.byId('althair'), al = C.byId('alexandre');
     app.innerHTML = `
     <section class="hero" aria-labelledby="hero-h">
-      <div class="hero-media"><img src="${TA.asset('hero.webp')}" alt="${esc(al.images[0].alt + ' · ' + m.images[0].alt)}" fetchpriority="high"></div>
-      <div class="hero-copy wrap">
+      <div class="hero-media"><img src="${TA.asset('hero-alexandre.webp')}" alt="${esc(al.images[0].alt)}" fetchpriority="high"></div>
+      <div class="hero-copy">
         <div class="hero-txt">
           <p class="eyebrow" data-rv>${t('heroEyebrow')}</p>
           <h1 class="display" id="hero-h" data-rv>${t('heroTitle')}</h1>
           <p class="hero-en" data-rv>Find Your Jawak</p>
           <p class="lead" data-rv>${t('heroText')}</p>
-          <div class="btn-row" data-rv><a class="btn btn-primary" href="#/c/all">${t('shopNow')}</a><a class="btn btn-ghost" href="#/c/samples">${t('trySamples')}</a></div>
+          <div class="btn-row" data-rv><a class="btn btn-light" href="#/c/all">${t('shopNow')}</a><a class="btn btn-outline-light" href="#/c/samples">${t('trySamples')}</a></div>
+          <a class="hero-tag" href="${al.url}" data-rv><span>${esc(al.brand)}</span><b>${esc(tx(al.name))}</b><em>${price(al.bottle.price)} · ${t('sampleFrom', { p: price(al.sample.price) })}</em></a>
         </div>
       </div>
-      <div class="hero-shop wrap" data-rv>${[al, m].map(p => `<a class="hero-tag" href="${p.url}"><span>${esc(p.brand)}</span><b>${esc(tx(p.name))}</b><em>${price(p.bottle.price)}</em></a>`).join('')}</div>
     </section>
 
     <section class="cats" aria-labelledby="cats-h">
       <div class="wrap sec-head"><h2 class="h2" id="cats-h">${t('catTitle')}</h2></div>
       <div class="wrap cat-grid">${C.categories.map(c => { const p = C.byId(c.cover); return `<a class="cat cat-${c.slug}" href="#/c/${c.slug}" data-rv>
-          <span class="cat-img"><img src="${p.images[0].src}" alt="" loading="lazy"></span>
+          <span class="cat-img"><img src="${p.images[0].src}" ${p.images[0].studio ? 'data-studio' : ''} alt="" loading="lazy"></span>
           <span class="cat-txt"><b>${esc(tx(c.name))}</b><small>${C.products.filter(c.filter).length} · ${t('viewAll')}</small></span>${I('arrow')}</a>`; }).join('')}</div>
     </section>
 
@@ -46,11 +46,22 @@
       </div></div>
     </section>
 
-    ${ui.rail(niche, { id: 'niche', title: t('nicheTitle'), sub: t('nicheSub'), link: '#/c/niche' })}
+    <section class="niche-banner" aria-labelledby="nb-h">
+      <div class="wrap nb-in">
+        <div class="nb-media" data-rv><img src="${TA.asset('niche-banner.webp')}" alt="${esc(al.brand + ' · Dolce & Gabbana Devotion · Diesel Fuel for Life')}" loading="lazy"></div>
+        <div class="nb-copy">
+          <p class="eyebrow" data-rv>${t('niche')}</p>
+          <h2 class="display-sm" id="nb-h" data-rv>${t('nicheTitle')}</h2>
+          <p class="lead" data-rv>${t('nicheText')}</p>
+          <div class="btn-row" data-rv><a class="btn btn-primary" href="#/c/niche">${t('shopNiche')}</a><a class="btn btn-ghost" href="#/brands">${t('brands')}</a></div>
+        </div>
+      </div>
+    </section>
+    ${ui.rail(niche, { id: 'niche', title: t('nicheSub'), link: '#/c/niche' })}
 
     <section class="moment" aria-labelledby="moment-h">
       <div class="wrap moment-grid">
-        <a class="moment-img" href="${m.url}" data-rv><img src="${m.images[0].src}" alt="${esc(m.images[0].alt)}" loading="lazy"></a>
+        <a class="moment-img" href="${m.url}" data-rv><img src="${m.images[0].src}" ${m.images[0].studio ? 'data-studio' : ''} alt="${esc(m.images[0].alt)}" loading="lazy"></a>
         <div class="moment-copy">
           <p class="eyebrow" data-rv>${t('momentEyebrow')}</p>
           <p class="brand-line" data-rv>${esc(m.brand)}</p>

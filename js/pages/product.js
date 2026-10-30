@@ -59,7 +59,7 @@
     </div>
     ${TA.ui.rail(C.related(p, 6), { id: 'related', title: t('related') })}
     <div class="buybar" id="buybar" aria-hidden="true">
-      <span class="buybar-img"><img src="${p.images[0].src}" alt=""></span>
+      <span class="buybar-img"><img src="${p.images[0].src}" ${p.images[0].studio ? 'data-studio' : ''} alt=""></span>
       <span class="buybar-txt"><b>${esc(tx(p.name))}</b><em id="bbPrice">${price(v.price)} · ${v.ml} ${t('ml')}</em></span>
       <button class="btn btn-primary btn-sm" data-action="add" data-variant="${v.id}" data-qty="1" id="bbAdd" tabindex="-1">${t('add')}</button>
     </div>`;

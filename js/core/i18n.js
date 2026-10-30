@@ -58,7 +58,7 @@
     wishTitle: ['المفضلة', 'Wishlist'], wishEmpty: ['لم تحفظ أي عطر بعد. اضغط على القلب لحفظ ما يعجبك.', 'Nothing saved yet. Tap the heart to keep what you love.'],
 
     // home
-    heroEyebrow: ['عطور نيش أصلية', 'Original niche fragrances'], heroTitle: ['وش جوّك اليوم؟', 'What’s your mood today?'],
+    heroEyebrow: ['Alexandre.J · عطور نيش أصلية', 'Alexandre.J · Original niche fragrances'], heroTitle: ['وش جوّك اليوم؟', 'What’s your mood today?'],
     heroText: ['عطور أصلية من أرقى الدور، بزجاجات كاملة وعينات تجرّبها على جلدك قبل أن تقرّر.', 'Original fragrances from the finest houses — in full bottles, and samples to try on your skin before you decide.'],
     shopNow: ['تسوّق العطور', 'Shop fragrances'], trySamples: ['جرّب العينات', 'Try samples'],
     catTitle: ['تسوّق حسب القسم', 'Shop by category'], bestTitle: ['الأكثر طلباً', 'Most loved'], bestSub: ['اختيارات عملائنا هذا الموسم', 'Our clients’ choices this season'],
@@ -66,7 +66,7 @@
     samplesText: ['كل عطر متوفر بعيّنة ٢ مل وتقسيمات ٥ و١٠ مل. جرّبه على جلدك، ثم اختر الزجاجة بثقة.', 'Every fragrance comes as a 2 ml sample and 5 and 10 ml decants. Wear it on your skin, then choose the bottle with confidence.'],
     step1: ['اختر العطر', 'Choose a scent'], step2: ['جرّب العيّنة', 'Wear the sample'], step3: ['الزجاجة بثقة', 'Bottle, confidently'],
     shopSamples: ['تسوّق العينات', 'Shop samples'],
-    momentEyebrow: ['عطر اللحظة', 'Fragrance of the moment'], nicheTitle: ['من دور النيش', 'From the niche houses'], nicheSub: ['إبداعات مستقلة لمن يبحث عن التميّز', 'Independent creations for the discerning'],
+    momentEyebrow: ['عطر اللحظة', 'Fragrance of the moment'], nicheTitle: ['من دور النيش', 'From the niche houses'], nicheText: ['إبداعات دور العطور المستقلة: مكوّنات نادرة، تركيبات جريئة، وحضور لا يشبه غيره. جرّب أي عطر بعيّنة قبل الزجاجة.', 'Creations from independent perfume houses: rare ingredients, daring compositions and a presence like no other. Try any of them as a sample first.'], shopNiche: ['تسوّق عطور النيش', 'Shop niche fragrances'], nicheSub: ['مختارات النيش', 'The niche edit'],
     jawakEyebrow: ['اكتشف عطرك', 'Discover your scent'], jawakTitle: ['وش إحساسك الحين؟', 'How do you feel right now?'],
     jawakText: ['اختر كلمة واحدة ونرشّح لك العطر الأقرب لمزاجك.', 'Pick one word and we’ll suggest the scent closest to your mood.'],
     because: ['لأن جوّك {m}', 'Because you feel {m}'], exploreMore: ['استكشف المزيد', 'Explore more'], alsoTry: ['جرّب أيضاً', 'Also try'],

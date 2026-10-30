@@ -23,35 +23,42 @@ window.PERFUMES = [
     notes:{top:{ar:['هيل','برغموت'],en:['Cardamom','Bergamot']},heart:{ar:['فانيلا','قرفة'],en:['Vanilla','Cinnamon']},base:{ar:['براليني','عنبر','صندل'],en:['Praline','Amber','Sandalwood']}},
     dna:{fresh:15,citrus:25,floral:20,woody:55,amber:92,longevity:92,projection:85},
     season:{ar:'خريف · شتاء',en:'Autumn · Winter'}, occasion:{ar:'سهرة · مناسبات',en:'Evening · Events'} },
-  { id:'diesel', img:'assets/img/diesel.webp', gender:'men', sample:false,
+  { id:'diesel', img:'assets/img/diesel-studio.webp', studio:true, gender:'men', sample:false,
     name:'Fuel for Life', house:'Diesel', ar:'فيول فور لايف',
     mood:{ar:'جريء عصري',en:'Bold & urban'},
     line:{ar:'طاقة شبابية بخشب وتوابل وروح شارع.',en:'Youthful energy of woods, spice and street spirit.'},
     notes:{top:{ar:['حمضيات','لافندر'],en:['Citrus','Lavender']},heart:{ar:['توابل','جلد'],en:['Spice','Leather']},base:{ar:['أخشاب','عنبر'],en:['Woods','Amber']}},
     dna:{fresh:55,citrus:46,floral:14,woody:76,amber:46,longevity:60,projection:56},
     season:{ar:'خريف · ربيع',en:'Autumn · Spring'}, occasion:{ar:'يومي · نادي',en:'Daily · Club'} },
-  { id:'lancome', img:'assets/img/lancome.webp', gender:'women', sample:false,
+  { id:'exuma', img:'assets/img/exuma-studio.webp', studio:true, gender:'men', sample:false,
+    name:'Vetiver Royale', house:'Exuma', ar:'فيتيفر رويال',
+    mood:{ar:'خشبي أنيق',en:'Elegant & woody'},
+    line:{ar:'فيتيفر ترابي راقٍ بلمسة حمضية وخلفية عنبرية دافئة.',en:'Refined earthy vetiver with a citrus lift over a warm amber base.'},
+    notes:{top:{ar:['برغموت','جريب فروت'],en:['Bergamot','Grapefruit']},heart:{ar:['فيتيفر','فلفل أسود'],en:['Vetiver','Black pepper']},base:{ar:['عنبر','أرز'],en:['Amber','Cedar']}},
+    dna:{fresh:52,citrus:58,floral:12,woody:90,amber:58,longevity:74,projection:62},
+    season:{ar:'كل المواسم',en:'All seasons'}, occasion:{ar:'دوام · مساء',en:'Work · Evening'} },
+  { id:'lancome', img:'assets/img/lancome-studio.webp', studio:true, gender:'women', sample:false,
     name:'Absolue Rose on the Moon', house:'Lancôme', ar:'أبسولو روز أون ذا مون',
     mood:{ar:'وردي هادئ',en:'Soft & rosy'},
     line:{ar:'وردة ناعمة تحت ضوء القمر، هادئة ومريحة.',en:'A soft rose beneath the moonlight, calm and comforting.'},
     notes:{top:{ar:['حمضيات ناعمة'],en:['Soft citrus']},heart:{ar:['ورد','ياسمين'],en:['Rose','Jasmine']},base:{ar:['مسك','خشب'],en:['Musk','Wood']}},
     dna:{fresh:40,citrus:30,floral:92,woody:24,amber:40,longevity:66,projection:55},
     season:{ar:'ربيع · خريف',en:'Spring · Autumn'}, occasion:{ar:'يومي · مناسبات',en:'Daily · Events'} },
-  { id:'devotion', img:'assets/img/devotion.webp', gender:'women', sample:false,
+  { id:'devotion', img:'assets/img/devotion-studio.webp', studio:true, gender:'women', sample:false,
     name:'Devotion', house:'Dolce & Gabbana', ar:'ديفوشن',
     mood:{ar:'مشرق وناعم',en:'Bright & tender'},
     line:{ar:'ليمون مشرق على قاعدة فانيلا كريمية.',en:'Bright lemon over a creamy vanilla base.'},
     notes:{top:{ar:['ليمون','برتقال'],en:['Lemon','Orange']},heart:{ar:['زهر البرتقال'],en:['Orange blossom']},base:{ar:['فانيلا','مسك'],en:['Vanilla','Musk']}},
     dna:{fresh:56,citrus:88,floral:55,woody:24,amber:50,longevity:70,projection:66},
     season:{ar:'ربيع · صيف',en:'Spring · Summer'}, occasion:{ar:'نهار · مناسبات',en:'Daytime · Events'} },
-  { id:'alexandre', img:'assets/img/alexandre.webp', gender:'women', sample:false,
+  { id:'alexandre', img:'assets/img/alexandre-studio.webp', studio:true, gender:'women', sample:false,
     name:'Alexandre.J', house:'Alexandre.J', ar:'ألكسندر جاي',
     mood:{ar:'أرجواني ملكي',en:'Regal & violet'},
     line:{ar:'زهور بودرية بعمق أرجواني وحضور أنيق.',en:'Powdery florals with a deep violet, elegant presence.'},
     notes:{top:{ar:['توابل خفيفة'],en:['Light spice']},heart:{ar:['بنفسج','ورد'],en:['Violet','Rose']},base:{ar:['باتشولي','مسك'],en:['Patchouli','Musk']}},
     dna:{fresh:25,citrus:20,floral:82,woody:40,amber:62,longevity:76,projection:70},
     season:{ar:'خريف · شتاء',en:'Autumn · Winter'}, occasion:{ar:'سهرة · مناسبات',en:'Evening · Events'} },
-  { id:'burberry', img:'assets/img/burberry.webp', gender:'women', sample:false,
+  { id:'burberry', img:'assets/img/burberry-studio.webp', studio:true, gender:'women', sample:false,
     name:'Burberry for Women', house:'Burberry', ar:'بيربري للنساء',
     mood:{ar:'كلاسيكي مشمس',en:'Classic & sunlit'},
     line:{ar:'زهور وفواكه بأناقة كلاسيكية لا تُنسى.',en:'Florals and fruit in timeless classic elegance.'},
@@ -65,7 +72,7 @@ window.FINDER = [
   { k:'bold',     ar:'جريء', en:'Bold',      pick:'althair',   alt:['isfarkand','diesel'] },
   { k:'dark',     ar:'غامض', en:'Dark',      pick:'alexandre', alt:['althair','isfarkand'] },
   { k:'calm',     ar:'هادئ', en:'Calm',      pick:'lancome',   alt:['burberry','verano'] },
-  { k:'woody',    ar:'خشبي', en:'Woody',     pick:'diesel',    alt:['isfarkand','althair'] },
+  { k:'woody',    ar:'خشبي', en:'Woody',     pick:'exuma',     alt:['diesel','isfarkand'] },
   { k:'seductive',ar:'مغري', en:'Seductive', pick:'devotion',  alt:['alexandre','lancome'] }
 ];
 
@@ -83,7 +90,7 @@ window.LOCS = [
   { ar:'الدمام — موقع تجريبي ٣', en:'Dammam — demo site 3', state:{ar:'قريباً',en:'Coming soon'}, ok:false, slots:['verano','lancome','althair','diesel','isfarkand','burberry','devotion','alexandre','lancome','althair','verano','diesel'] }
 ];
 
-window.BRANDS = ['Ormonde Jayne','Parfums de Marly','Alexandre.J','Diesel','Lancôme','Dolce & Gabbana','Burberry'];
+window.BRANDS = ['Ormonde Jayne','Parfums de Marly','Alexandre.J','Exuma','Diesel','Lancôme','Dolce & Gabbana','Burberry'];
 
 window.AXES = [
   {k:'fresh',ar:'منعش',en:'Fresh'},{k:'citrus',ar:'حمضي',en:'Citrus'},{k:'floral',ar:'زهري',en:'Floral'},
@@ -95,9 +102,10 @@ window.DEMO_COMMERCE = {
   althair:   { ml:125, price:1190, niche:true,  featured:1, gallery:[{src:'assets/img/hero.webp', pos:'80% 55%'},{src:'assets/img/samples.webp', pos:'27% 60%'}] },
   isfarkand: { ml:100, price:1050, niche:true,  featured:2, gallery:[{src:'assets/img/samples.webp', pos:'45% 55%'}] },
   verano:    { ml:100, price:1090, niche:true,  featured:3, gallery:[{src:'assets/img/samples.webp', pos:'8% 50%'}] },
-  alexandre: { ml:100, price:690,  niche:true,  featured:4, gallery:[{src:'assets/img/hero.webp', pos:'58% 55%'}] },
-  devotion:  { ml:50,  price:520,  niche:false, featured:5, gallery:[] },
+  alexandre: { ml:100, price:690,  niche:true,  featured:4, gallery:[{src:'assets/img/hero-alexandre.webp', pos:'26% 50%'},{src:'assets/img/niche-banner.webp', pos:'18% 50%'}] },
+  devotion:  { ml:50,  price:520,  niche:false, featured:5, gallery:[{src:'assets/img/niche-banner.webp', pos:'88% 55%'}] },
   lancome:   { ml:100, price:890,  niche:false, featured:6, gallery:[] },
   burberry:  { ml:100, price:340,  niche:false, featured:7, gallery:[] },
-  diesel:    { ml:50,  price:295,  niche:false, featured:8, gallery:[] }
+  diesel:    { ml:50,  price:295,  niche:false, featured:8, gallery:[] },
+  exuma:     { ml:100, price:850,  niche:true,  featured:4.5, gallery:[] }
 };

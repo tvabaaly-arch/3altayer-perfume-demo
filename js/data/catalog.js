@@ -26,7 +26,7 @@
         brand: raw.house, brandSlug: slugify(raw.house),
         name: { ar: raw.name, en: raw.name }, sub: { ar: raw.ar, en: raw.house },
         gender: raw.gender, niche: c.niche, featured: c.featured, inStock: true,
-        images: [{ src: raw.img, alt, product: true }, ...c.gallery.map(g => ({ src: g.src, pos: g.pos, alt }))],
+        images: [{ src: raw.img, alt, product: !raw.studio, studio: !!raw.studio }, ...c.gallery.map(g => ({ src: g.src, pos: g.pos, alt }))],
         variants, bottle: variants[3], sample: variants[0], priceFrom: variants[0].price,
         mood: raw.mood, line: raw.line, notes: raw.notes, dna: raw.dna, season: raw.season, occasion: raw.occasion,
         hasSampleShot: raw.sample

@@ -34,7 +34,7 @@
         <a href="#/discover?s=dna">${t('dna')}<small>${t('dnaSub')}</small></a>
         <a href="#/discover?s=set">${t('set')}<small>${t('setSub')}</small></a>
         <a href="#/discover?s=stations">${t('stations')}<small>${t('stationsSub')}</small></a></div>
-      <a class="mega-feat" href="${feat.url}"><span class="mega-feat-img"><img src="${feat.images[0].src}" alt="" loading="lazy"></span>
+      <a class="mega-feat" href="${feat.url}"><span class="mega-feat-img"><img src="${feat.images[0].src}" ${feat.images[0].studio ? 'data-studio' : ''} alt="" loading="lazy"></span>
         <span><small>${t('momentEyebrow')}</small><b>${esc(tx(feat.name))}</b><em>${esc(feat.brand)}</em></span></a>
     </div>`;
     $('#hdrSearchLabel').textContent = t('searchPh');
@@ -84,7 +84,7 @@
   /* ---------- menu drawer ---------- */
   function renderMenu() {
     $('#dMenu .drawer-body').innerHTML = `
-      <nav aria-label="${t('menu')}"><ul class="m-cats">${C.categories.map(c => `<li><a href="#/c/${c.slug}"><span>${esc(tx(c.name))}</span><img src="${C.byId(c.cover).images[0].src}" alt="" loading="lazy"></a></li>`).join('')}
+      <nav aria-label="${t('menu')}"><ul class="m-cats">${C.categories.map(c => `<li><a href="#/c/${c.slug}"><span>${esc(tx(c.name))}</span><img src="${C.byId(c.cover).images[0].src}" ${C.byId(c.cover).images[0].studio ? 'data-studio' : ''} alt="" loading="lazy"></a></li>`).join('')}
         <li><a href="#/brands"><span>${t('brands')}</span>${I('chev')}</a></li></ul></nav>
       <p class="m-h">${t('discover')}</p>
       <ul class="m-links"><li><a href="#/discover?s=jawak">${I('spark')}${t('jawak')}</a></li><li><a href="#/discover?s=dna">${I('radar')}${t('dna')}</a></li>
@@ -98,7 +98,7 @@
     const ls = TA.cart.lines(), s = TA.cart.summary();
     $('#dCart .drawer-title').innerHTML = `${t('cartTitle')} <small>${s.count ? t('items', { n: s.count }) : ''}</small>`;
     $('#dCart .drawer-body').innerHTML = ls.length ? `<ul class="cart-lines">${ls.map(l => `<li class="cl" data-v="${l.v}">
-        <a class="cl-img" href="${l.product.url}"><img src="${l.product.images[0].src}" alt="" loading="lazy"></a>
+        <a class="cl-img" href="${l.product.url}"><img src="${l.product.images[0].src}" ${l.product.images[0].studio ? 'data-studio' : ''} alt="" loading="lazy"></a>
         <div class="cl-info"><small>${esc(l.product.brand)}</small><a href="${l.product.url}"><b>${esc(tx(l.product.name))}</b></a><span>${variantLabel(l.variant)}</span>
           <div class="cl-row"><div class="qty" role="group" aria-label="${t('qty')}"><button data-action="qty" data-v="${l.v}" data-d="-1" aria-label="${t('dec')}">${I('minus')}</button><output aria-live="polite">${l.qty}</output><button data-action="qty" data-v="${l.v}" data-d="1" aria-label="${t('inc')}">${I('plus')}</button></div>
           <b class="cl-price">${price(l.qty * l.variant.price)}</b></div></div>
