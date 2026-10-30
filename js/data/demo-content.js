@@ -1,4 +1,6 @@
-/* Demo data — notes, scores, seasons and occasions are ILLUSTRATIVE only. */
+/* DEMO CONTENT — not live store data.
+   Notes, DNA scores, seasons, occasions, sizes and prices are ILLUSTRATIVE placeholders.
+   In production this file is replaced by live product data via js/data/catalog.js (the adapter). */
 window.PERFUMES = [
   { id:'isfarkand', img:'assets/img/isfarkand.webp', gender:'men', sample:true,
     name:'Isfarkand', house:'Ormonde Jayne', ar:'إسفركند',
@@ -87,3 +89,15 @@ window.AXES = [
   {k:'fresh',ar:'منعش',en:'Fresh'},{k:'citrus',ar:'حمضي',en:'Citrus'},{k:'floral',ar:'زهري',en:'Floral'},
   {k:'woody',ar:'خشبي',en:'Woody'},{k:'amber',ar:'عنبري',en:'Amber'},{k:'longevity',ar:'الثبات',en:'Longevity'},{k:'projection',ar:'الفوحان',en:'Projection'}
 ];
+
+/* Demo commerce fields (placeholders — live prices, sizes and stock come from the store). */
+window.DEMO_COMMERCE = {
+  althair:   { ml:125, price:1190, niche:true,  featured:1, gallery:[{src:'assets/img/hero.webp', pos:'80% 55%'},{src:'assets/img/samples.webp', pos:'27% 60%'}] },
+  isfarkand: { ml:100, price:1050, niche:true,  featured:2, gallery:[{src:'assets/img/samples.webp', pos:'45% 55%'}] },
+  verano:    { ml:100, price:1090, niche:true,  featured:3, gallery:[{src:'assets/img/samples.webp', pos:'8% 50%'}] },
+  alexandre: { ml:100, price:690,  niche:true,  featured:4, gallery:[{src:'assets/img/hero.webp', pos:'58% 55%'}] },
+  devotion:  { ml:50,  price:520,  niche:false, featured:5, gallery:[] },
+  lancome:   { ml:100, price:890,  niche:false, featured:6, gallery:[] },
+  burberry:  { ml:100, price:340,  niche:false, featured:7, gallery:[] },
+  diesel:    { ml:50,  price:295,  niche:false, featured:8, gallery:[] }
+};
