@@ -1,89 +1,13 @@
-<!doctype html>
-<html lang="ar" dir="rtl" class="no-js">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>عالطاير — 3ALTAYER</title>
-<meta name="description" content="عالطاير: عطور نيش أصلية، بزجاجات كاملة وعينات للتجربة. نسخة عرض تجريبية للواجهة فقط.">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="assets/img/logo-blue.png" type="image/png">
-<link rel="preload" href="assets/fonts/tajawal-arabic-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/tokens.css">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/shell.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/pages.css">
-</head>
-<body data-route="home">
-
-<a class="skip" href="#main" data-t="skip">تخطَّ إلى المحتوى</a>
-
-<!-- Brand intro (once per session) -->
-<div class="intro" id="intro" aria-hidden="true">
-  <div class="intro-logo"><img class="lg-orange" src="assets/img/logo-orange.png" alt=""><img class="lg-blue" src="assets/img/logo-blue.png" alt=""></div>
-</div>
-
-<!-- Announcement bar -->
-<div class="ann" id="ann" role="region" data-t-attr="aria-label:brand">
-  <p class="on" data-t="ann1"></p><p data-t="ann2"></p><p data-t="ann3"></p>
-</div>
-
-<!-- Header -->
-<header class="hdr" id="hdr">
-  <div class="hdr-in">
-    <button class="icon-btn hdr-menu" data-open="menu" data-t-attr="aria-label:menu"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
-    <a class="logo" href="#/" data-t-attr="aria-label:brand"><img class="lg-orange" src="assets/img/logo-orange.png" alt=""><img class="lg-blue" src="assets/img/logo-blue.png" alt=""></a>
-    <nav class="nav" data-t-attr="aria-label:shop"><ul id="navList"></ul></nav>
-    <button class="hdr-search" data-open="search"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><span id="hdrSearchLabel"></span></button>
-    <div class="hdr-act">
-      <button class="icon-btn hdr-search-ic" data-open="search" data-t-attr="aria-label:search"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg></button>
-      <button class="lang-btn" id="langBtn" data-lang-toggle></button>
-      <a class="icon-btn hdr-wish" href="#/wishlist" data-t-attr="aria-label:wishlist"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg><i class="badge" data-badge="wish" hidden></i></a>
-      <button class="icon-btn" data-open="cart" data-cart-label><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg><i class="badge" data-badge="cart" hidden></i></button>
-    </div>
-  </div>
-  <div class="mega" id="mega"></div>
-</header>
-
-<!-- Mobile prominent search -->
-<div class="msearch"><button class="msearch-btn" data-open="search"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><span data-t="searchPh"></span></button></div>
-
-<main id="main" tabindex="-1"><div id="app"></div></main>
-
-<footer class="ftr" id="footer"></footer>
-
-<!-- Mobile tab bar -->
-<nav class="tabbar" id="tabbar" data-t-attr="aria-label:menu"></nav>
-
-<!-- Overlays -->
-<div class="scrim" id="scrim"></div>
-<aside class="drawer drawer-start" id="dMenu" role="dialog" aria-modal="true" aria-labelledby="dMenuT" hidden>
-  <div class="drawer-head"><h2 class="drawer-title" id="dMenuT"></h2><button class="icon-btn" data-close data-t-attr="aria-label:close"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <div class="drawer-body"></div>
-</aside>
-<aside class="drawer drawer-end" id="dCart" role="dialog" aria-modal="true" aria-labelledby="dCartT" hidden>
-  <div class="drawer-head"><h2 class="drawer-title" id="dCartT"></h2><button class="icon-btn" data-close data-t-attr="aria-label:close"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-  <div class="drawer-body"></div>
-  <div class="drawer-foot"></div>
-</aside>
-<div class="search-ov" id="dSearch" role="dialog" aria-modal="true" data-t-attr="aria-label:search" hidden></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-<script src="assets/vendor/gsap.min.js"></script>
-<script src="js/data/demo-content.js"></script>
-<script src="js/core/util.js"></script>
-<script src="js/core/i18n.js"></script>
-<script src="js/data/catalog.js"></script>
-<script src="js/core/store.js"></script>
-<script src="js/core/router.js"></script>
-<script src="js/components/icons.js"></script>
-<script src="js/components/product-card.js"></script>
-<script src="js/components/discovery.js"></script>
-<script src="js/components/shell.js"></script>
-<script src="js/pages/home.js"></script>
-<script src="js/pages/category.js"></script>
-<script src="js/pages/product.js"></script>
-<script src="js/pages/misc.js"></script>
-<script src="js/app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>عالطاير — عطر يشبهك</title><meta name="description" content="تجربة جديدة لاكتشاف عالم عالطاير للعطور والعينات"><link rel="stylesheet" href="assets/font.css"><link rel="stylesheet" href="style.css"></head><body>
+<div class="announcement">عالم من العطور الأصلية. اختيارات تشبهك. <span>اكتشف مجموعتنا ←</span></div>
+<header><a href="#" class="logo" aria-label="عالطاير الرئيسية"><img src="assets/logo.webp" alt="عالطاير"></a><nav aria-label="التنقل الرئيسي"><a href="#collection" data-filter="all">كل العطور</a><a href="#moments">حسب المناسبة</a><a href="#collection" data-filter="men">رجالي</a><a href="#collection" data-filter="women">نسائي</a><a href="#samples">العينات والتقسيمات</a><button data-action="brands">دور العطور</button></nav><div class="tools"><button aria-label="بحث" data-action="search" class="icon">⌕</button><button aria-label="المفضلة" data-action="favorites" class="icon">♡</button><button aria-label="سلة التسوق" data-action="cart" class="bag">حقيبتك <span id="count">0</span></button><button aria-label="القائمة" data-action="menu" class="mobile icon">☰</button></div></header>
+<main><section class="hero"><img src="assets/50094.webp" alt="تشكيلة عطور راقية على قواعد حجرية" fetchpriority="high"><div class="hero-copy"><div class="eyebrow">THE ART OF FINDING YOUR SCENT</div><p class="tiny">لكل شخصية، بصمة</p><h1>بعض العطور تُعجبك.<br>وعطرٌ واحد <em>يشبهك.</em></h1><p>من روائع النيش إلى أيقونات العطور العالمية.<br>اكتشف عطرك القادم، على ذوقك.</p><div class="hero-actions"><a class="btn" href="#collection">اكتشف المجموعة <span>←</span></a><button class="text-btn" data-action="quiz">ساعدني أختار ↗</button></div><div class="hero-bottom"><span>مختارات عالطاير / 01</span><span class="line"></span><span>عالم يستحق الاكتشاف</span></div></div></section>
+<div class="trust"><span>✧ <b>عطور أصلية</b> من دور عالمية</span><span>◈ <b>جرّب قبل الاختيار</b> مع العينات</span><span>♧ <b>ذوقك أولًا</b> اختيارات لكل مناسبة</span></div>
+<section class="section intro"><div><div class="eyebrow">FIND YOUR WORLD</div><h2>أي عالمٍ <em>يشبهك؟</em></h2></div><p>ابدأ من ذوقك. واترك الباقي للعطر.</p><div class="category-grid"><a href="#collection" data-filter="women" class="category"><img src="https://cdn.files.salla.network/homepage/1569190560/98d2e65f-1662-488c-89fc-f2f0bf162f48_900x900.webp" alt="عطور نسائية" loading="lazy"><div><small>نعومة لها حضور</small><h3>لها</h3><span>اكتشف المجموعة ←</span></div></a><a href="#collection" data-filter="men" class="category"><img src="https://cdn.files.salla.network/homepage/1569190560/2d6d5f17-2f04-4f9b-a0bb-19c07bc456ba_900x900.webp" alt="عطور رجالية" loading="lazy"><div><small>شخصية تترك أثرًا</small><h3>له</h3><span>اكتشف المجموعة ←</span></div></a><a href="#samples" class="category"><img src="https://cdn.files.salla.network/homepage/1569190560/b4c22404-6e72-4a8d-bbe3-12d11c8814ab_900x900.webp" alt="عطر وعينة للتجربة" loading="lazy"><div><small>رحلة تبدأ بتجربة</small><h3>العينات</h3><span>جرّب عطرك القادم ←</span></div></a></div></section>
+<section class="section moments" id="moments"><div class="section-head"><div><div class="eyebrow">A SCENT FOR EVERY CHAPTER</div><h2>لكل وقتٍ <em>عطره.</em></h2></div><p>من أول اجتماع، إلى آخر سهرة.<br>اختر اللحظة، واكتشف عالمها.</p></div><div class="moment-grid"><button class="moment-card" data-moment="work"><div class="moment-image"><img src="https://cdn.files.salla.network/homepage/1569190560/9f7c403f-475c-4630-8502-81afc600afa4_900x900.webp" alt="عطور للدوام" loading="lazy"><span>01</span></div><div class="moment-caption"><h3>للدوام</h3><span aria-hidden="true">↖</span><p>حضور هادئ. انطباع واثق.</p></div></button><button class="moment-card" data-moment="occasion"><div class="moment-image"><img src="https://cdn.files.salla.network/homepage/1569190560/d0a012c4-8b1a-4be1-8618-0df932471a5b_900x900.webp" alt="عطور للمناسبات" loading="lazy"><span>02</span></div><div class="moment-caption"><h3>للمناسبات</h3><span aria-hidden="true">↖</span><p>للحظات التي تستحق أن تُذكر.</p></div></button><button class="moment-card" data-moment="gym"><div class="moment-image"><img src="https://cdn.files.salla.network/homepage/1569190560/2a2dabb9-1038-4a69-919b-cbba7006feac_900x900.webp" alt="عطور للنادي" loading="lazy"><span>03</span></div><div class="moment-caption"><h3>للنادي</h3><span aria-hidden="true">↖</span><p>ابدأ بنشاط. واكمل بانتعاش.</p></div></button><button class="moment-card" data-moment="gathering"><div class="moment-image"><img src="https://cdn.files.salla.network/homepage/1569190560/314c153b-fb95-43c4-b1be-6978e5bac622_900x900.webp" alt="عطور للجمعات" loading="lazy"><span>04</span></div><div class="moment-caption"><h3>للجمعات</h3><span aria-hidden="true">↖</span><p>قريب منك. حاضر بينهم.</p></div></button></div></section><section class="discovery-lab section" id="discovery"><div class="section-head"><div><div class="eyebrow">MORE THAN A PERFUME STORE</div><h2>تجربة تُسهّل <em>اختيارك.</em></h2></div><p>تفاصيل صغيرة. فرق كبير في رحلتك.</p></div><div class="lab-grid"><button class="lab-card" data-action="compare"><div class="lab-top"><span class="lab-symbol">⇄</span><small>01 / COMPARE</small></div><h3>قارن. ثم قرّر.</h3><p>ضع اختياراتك جنبًا إلى جنب،<br>وشاهد الفروق بوضوح.</p><span class="lab-link">ابدأ المقارنة ←</span></button><button class="lab-card" data-action="kit"><div class="lab-top"><span class="lab-symbol">✧</span><small>02 / DISCOVERY SET</small></div><h3>ثلاث تجارب. ذوقك أنت.</h3><p>كوّن مجموعة عيناتك بنفسك،<br>وابدأ رحلة اكتشاف جديدة.</p><span class="lab-link">صمّم مجموعتك ←</span></button><button class="lab-card" data-action="wardrobe"><div class="lab-top"><span class="lab-symbol">▥</span><small>03 / SCENT WARDROBE</small></div><h3>خزانة عطرك الخاصة.</h3><p>عطر للدوام وآخر للمناسبات.<br>رتّب اختياراتك واحفظها لوقتها.</p><span class="lab-link">رتّب خزانتي ←</span></button></div></section><section class="section" id="collection"><div class="section-head"><div><div class="eyebrow">THE CURATED EDIT</div><h2>عطور تستحق <em>الاكتشاف.</em></h2></div><button class="compare-trigger" data-action="compare">⇄ مقارنة العطور <span id="compare-count">0</span></button></div><div class="filterbar"><div class="tabs" role="group" aria-label="تصفية العطور"><button class="active" data-filter="all">كل المختارات</button><button data-filter="women">لها</button><button data-filter="men">له</button><button data-filter="niche">عطور نيش</button></div><label class="sort">ترتيب حسب <select id="sort" aria-label="ترتيب المنتجات"><option value="default">اختياراتنا</option><option value="az">اسم العطر</option></select></label></div><div class="product-grid" id="products"></div><p id="empty" hidden>لا توجد نتائج. جرّب اسمًا آخر أو غيّر التصفية.</p></section>
+<section class="signature"><img src="assets/50096.webp" alt="عطر أرجواني بإضاءة سينمائية" loading="lazy"><div><div class="eyebrow">A SIGNATURE, NOT JUST A SCENT</div><h2>حضورٌ يسبقك.<br><em>وأثرٌ يبقى.</em></h2><p>هناك عطور تمرّ، وأخرى تصبح جزءًا منك.<br>اكتشف الجانب الاستثنائي من ذوقك.</p><button class="btn light" data-action="quiz">اكتشف عطرك الخاص ←</button></div></section>
+<section class="section" id="samples"><div class="section-head"><div><div class="eyebrow">TRY. DISCOVER. FALL IN LOVE.</div><h2>قبل الزجاجة، <em>التجربة.</em></h2></div><p>عينات من المتجر لتكتشف اختيارك بثقة.</p></div><div class="product-grid" id="sample-products"></div><p class="muted">الأسعار المعروضة من المتجر وقت إعداد الديمو؛ الحجم والتوفر يُراجعان في صفحة المنتج الأصلية.</p></section>
+<section class="quiz-banner section"><div class="orb">✧</div><div><div class="eyebrow">YOUR SCENT, YOUR STORY</div><h2>محتار؟ خلّنا نعرف <em>ذوقك.</em></h2><p>ثلاث خطوات بسيطة تقرّبك من عطرك القادم.</p></div><button class="btn" data-action="quiz">اكتشف عطرك ←</button></section>
+<section class="section brand-section"><div class="eyebrow">EXCEPTIONAL HOUSES. ENDLESS DISCOVERIES.</div><h2>من دورٍ تُتقن <em>فن العطر.</em></h2><div class="brand-row"><button data-brand="LANCÔME">LANCÔME</button><button data-brand="BURBERRY">BURBERRY</button><button data-brand="DOLCE & GABBANA">DOLCE & GABBANA</button><button data-brand="DIESEL">DIESEL</button><button data-brand="EXUMA">EXUMA</button></div></section>
+</main><footer><div class="footer-top"><div><img src="assets/logo.webp" alt="عالطاير" class="footer-logo"><p>عطرك، بصمتك.<br>مساحة لاكتشاف العطور التي تحكي عنك.</p></div><div><h4>اكتشف عالطاير</h4><a href="#collection">مجموعة العطور</a><a href="#samples">العينات والتقسيمات</a><button data-action="quiz">اكتشف عطرك</button></div><div><h4>نحن هنا لمساعدتك</h4><a href="https://3altayer.com/redirect/pages/1153122470" target="_blank" rel="noopener">الشحن والتوصيل ↗</a><a href="https://3altayer.com/redirect/pages/556564449" target="_blank" rel="noopener">الاستبدال والاسترجاع ↗</a><a href="https://3altayer.com/redirect/pages/170886883" target="_blank" rel="noopener">عن أصالة العطور ↗</a></div><div><h4>اختيارك يبدأ من هنا</h4><p>تصفح، اكتشف، وجرّب.<br>عالم عالطاير أقرب لك.</p><a href="https://3altayer.com" target="_blank" rel="noopener">زيارة المتجر الحالي ↗</a></div></div><div class="footer-bottom"><span>© 2026 عالطاير</span><span>نسخة عرض مستقلة — السلة والدفع للتجربة فقط</span><span>صُممت لتجربة أجمل</span></div></footer>
+<dialog id="modal"><button class="close" aria-label="إغلاق النافذة">×</button><div id="modal-content"></div></dialog><div id="toast" role="status"></div><button id="compare-dock" data-action="compare" hidden>⇄ قارن اختياراتك <span>0 / 3</span></button><script src="app.js"></script><script src="experience.js"></script></body></html>
